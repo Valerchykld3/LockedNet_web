@@ -1,0 +1,92 @@
+{
+    "Header": {
+    "home": "LockedNet"
+  },
+
+  "Futter": {
+    "title": "LockedNet",
+    "t": "The LockedNet project is non-commercial and was created solely for my personal engineering portfolio. It serves to demonstrate the technical solutions and operational logic of the AntiBlackout ecosystem."
+  },
+
+  "Sidebar": {
+    "title": "Roadmap",
+    "home": "LockedNet Philosophy: Introduction",
+    "ch1": "High-Level Ecosystem: General Network Architecture", 
+    "ch2": "Network Physics: Hardware Modules and Communication Protocols",
+    "ch3": "Basic Control: Interface and Local Server",
+    "ch4": "The Brain of the System: Hub Architecture (Hardware & Software)",
+    "ch5": "Help-Beacon: Mobile Repeater",
+    "ch6": "Peripherals: Actuator Devices (Catalog)",
+    "ch7": "AntiBlackout Protocol",
+    "ch8": "Iron Chatting Protocol"
+  },
+
+  "HomePage": {
+    "title": "AntiBlackout system LockedNet",
+    "n1": "When Darkness Becomes Routine",
+    "t1": "Ukraine's energy infrastructure regularly suffers critical damage, turning prolonged power outages into a daily ordeal. A blackout is more than just a lack of lighting. It means paralyzed heating systems during winter frosts, unbearable heat and halted water supply in summer, kilometer-long queues of de-energized public transport, severed communication networks, and the disruption of a modern person's basic needs. In such extreme conditions, total dependence on the centralized grid and internet providers becomes not just an inconvenience, but a critical vulnerability.",
+    "t2": "LockedNet is a decentralized anti-blackout ecosystem designed for absolute independence from external networks. The heart of the system, the Main Hub, utilizes its own radio channels to coordinate a network of autonomous devices, eliminating the need for Wi-Fi routers.",
+    "t3": "The current MVP is engineered to overcome severe climate challenges during blackouts. In the winter season, autonomous actuator modules maintain a critical indoor temperature, while in the summer, they provide ventilation and air humidification. Thanks to the AntiBlackout protocol, the ecosystem instantly reacts to power loss, deploying adaptive lighting and switching smart devices into autonomous operation mode.",
+    "n2": "The \"Survival Room\" Strategy",
+    "t4": "The primary rule of survival during winter blackouts is to avoid trying to heat the entire apartment. The most effective strategy is to isolate a single, smallest room, turning it into an autonomous \"capsule\". The operation of LockedNet's actuator modules is optimized specifically for this logic. Instead of wasting precious battery energy across the entire apartment, the system focuses its resources on maintaining a critical microclimate within this limited 3×3 m² space.",
+    "t5": "This web resource was created with sole purpose of converting dozens of pages of disjointed technical notes and schematics into a comprehensible, structured presentation. It does not contain complex academic documentation, but rather the living operational logic of the ecosystem presented in lay terms. Furthermore, you can find a link to LinkedIn above, which documents the entire process of LockedNet's transformation from concept to a working ecosystem.",
+    "t6": "The navigation is non-linear and operates on a \"web\" principle: you can freely jump between any sections via the collapsible sidebar. However, for those who prefer to explore the LockedNet architecture with maximum comfort, we have included a \"roadmap\" in the same panel—a carefully designed sequence of pages for a smooth and step-by-step immersion into the project.",
+    "archLink": "Go to LockedNet Architecture"
+  },
+
+  "Archnet": {
+    "title": "High-Level Ecosystem: General Network Architecture",
+    "t1": "Before diving into the low-level principles of protocol operation, it is worth getting to know the \"players\" on the field. This page is a bird's-eye view of the LockedNet architecture. We will look at the big picture of the network without a magnifying glass and a soldering iron to understand who transmits data to whom and how",
+    "n1": "The Brain of Operations: The Main Hub",
+    "t2": "First of all, it is only fair to start with the Hub — it is both the central processor and the main repeater of the ecosystem.",
+    "td2": "It receives data packets and commands from the user, filters them, and decides where to route the requests next. Besides routing, the Hub can execute its own internal commands (more developmental and informational than executive). The device is equipped with a display to show its current status in real time: battery charge, connection status, and system notifications. The Hub meticulously records all network activities into its own logging system.",
+    "n2": "Entry Points: How to Control the System",
+    "t3": "The full-fledged interface for interacting with LockedNet is located directly on the web resource, optimized for convenient smartphone use. This site is not hosted on the public internet — it is deployed locally via the HTTP protocol around the receiving devices. Thus, the smartphone becomes the first link in the logical chain of the ecosystem's control.",
+    "t4": "Since the smartphone and the Hub physically \"speak\" different languages (hosting an HTTP server directly on the Hub's microcontroller is suicide for the battery), receiving devices (repeaters) stand between them. There are two of them in the ecosystem:",
+    "t5": "Local PC: The main bridge in peaceful times. The computer runs a Python server that communicates with the smartphone via the home Wi-Fi network, and transmits data to the Hub via a wire through the COM port. The PC also handles part of the logging. But as soon as the PC shuts down due to prolonged power outages, this link drops.",
+    "t6": "Help-Beacon: A lifesaver outside the home Wi-Fi or during a blackout. This compact device independently sets up its own Wi-Fi Access Point, to which the smartphone connects. Upon receiving an HTTP request, the beacon instantly relays it to the Hub via its own radio channels.",
+    "n3": "Actuator Modules: Home Devices",
+    "t7": "Home devices are end nodes that directly manipulate the environment or collect data. They operate in a strict background mode: staying in deep sleep to conserve precious battery energy, and periodically \"listening\" to the Hub's radio airwaves, waiting for their assignments. Each device has its own unique functionality optimized for a specific task.",
+    "t8": "The first version of LockedNet (MVP) is designed with a priority on solving the basic comfort needs of ordinary people during blackouts.",
+    "n4": "Analytical Modules (Sensors):",
+    "t9": "UPSdevice: The main sentinel of the system. This device is permanently plugged into an outlet and measures the voltage in the 220V mains. It is the very foundation of the \"anti-blackout\" concept. As soon as the voltage disappears, it signals the Hub, which instantly triggers the rescue scenarios.",
+    "t10": "meteoDevice: The microclimate analyzer. It monitors temperature, humidity, and carbon dioxide (CO2) levels in the room. This data is displayed on the smartphone screen and simultaneously analyzed by the Hub for the protocol's operation.",
+    "n5": "Action Modules (Environment Manipulators):",
+    "t11": "alarmLight: An adaptive lighting system based on an addressable LED strip (a \"very smart garland\"). It has multiple glowing and blinking modes. It is controlled by a physical button, via the web interface, or turns on automatically when the AntiBlackout protocol is triggered.",
+    "t12": "comfortAir: A \"3-in-1\" climate combine. A device that maintains the ideal microclimate in the Survival Room. It integrates heating, humidification, and air ventilation systems in one compact casing. It can execute specific user commands (e.g., \"heat to 20°C, humidify to 45%\"), and also operates as a standard unit during blackouts.",
+    "t13": "boilDevice: A pleasant whim beyond the core survival functionality. This is a mechanical manipulator (servo drive) that, upon command, physically presses the button on an electric kettle and returns to its original position. It does not participate in safety protocols, but guarantees that hot coffee will be waiting for me upon returning home."
+  },
+
+  "Netph": {
+      "title": "Network Physics: Hardware Modules and Communication Protocols",
+      "t1": "LockedNet's actuator module hardware consists of microcontroller-based embedded systems built on the principle of modular architecture. They organically combine analog power management subsystems with high-speed digital buses for communication with sensors.",
+      "t2": "Absolutely all devices in the ecosystem share a common trait: their heart is a combination of a microcontroller (MCU) and a radio module (RM). Depending on the device's purpose, MCU and RM models may differ. The microcontroller executes the embedded logic and processes data, while the radio module constantly \"listens\" to the airwaves or transmits data packets. To ensure stable operation of the radio module during peak current consumption (during data transmission) and to prevent packet loss, an electrolytic capacitor of 470 μF must be installed parallel to the power bus (between VCC and GND).",
+      "n1": "Energy Independence: Power and Control",
+      "t3": "Since the network is designed to operate under blackout conditions, the power system is standardized and optimized for long-term autonomy.",
+      "t4": "Most devices are powered by 18650 form factor Li-ion batteries. The charging process is controlled by a module based on the TP4056. To ensure the critically important stable voltage of 3.3V necessary for the safe operation of the microcontroller and radio modules, an HT7333-A regulator with ultra-low quiescent current is used. Some devices have additional power architecture improvements.",
+      "t5": "Charge Monitoring: The initial concept involved using the MAX17043 module for precise hardware-based charge level determination. However, due to a shortage of quality modules on the market and the desire to maintain modularity (without soldering bare SMD components), the architecture was changed. Battery voltage measurement now occurs directly through the microcontroller's ADC using an analog voltage divider with two 10 kΩ resistors.",
+      "t6": "Analog Optimizations: To guarantee stable logic levels in the circuits, 10 kΩ pull-up or pull-down resistors are used. The alarmLight and boilDevice hardware are additionally equipped with n-channel MOSFET transistors. They function as electronic keys, physically cutting off power from the power stages in standby mode so that they do not consume energy in the background.",
+      "n2": "Digital Data Transmission Buses",
+      "t7": "Data exchange within devices (between the MCU and peripherals) occurs over two main digital buses:",
+      "t8": "The SPI (Serial Peripheral Interface) bus is used for high-speed synchronous data exchange. SPI technology is ideal for modules requiring instant reaction and high throughput. In the ecosystem, SI24R1 radio modules \"sit\" on this bus. The Main Hub has a more complex architecture: two devices are connected to its SPI bus at once—a powerful NRF24L01 radio module with an amplifier (PA+LNA) and a MicroSD adapter for event logging. To avoid bus collisions when both modules try to \"shout\" to the microcontroller simultaneously, pull-up resistors are installed on their CSN (Chip Select Not) pins.",
+      "t9": "The I²C (Inter-Integrated Circuit) bus is a slower but extremely convenient two-wire bus that allows connecting dozens of devices through just two pins (SDA and SCL). Each module on the bus has its own unique address. Key analytical peripherals are connected via I²C:",
+      "t10": "SCD40: A high-precision temperature, humidity, and CO2 level sensor (installed in the meteoDevice). Like the radio modules, it requires its own electrolytic capacitor on the power supply for stable readings.",
+      "t11": "OLED 0.96\": An energy-efficient display. Its technology lies in the fact that each pixel is a separate organic light-emitting diode that emits light itself, so black color consumes no energy at all. Used in the Hub and meteoDevice.",
+      "t12": "DS3231: A hardware Real-Time Clock (RTC) module with its own battery. Installed in the Hub so the system does not lose track of time even after a deep discharge or forced restart.",
+      "n3": "Peripherals and Power Electronics",
+      "t13": "To interact with the physical world, LockedNet modules use specialized electronics:",
+      "t14": "ZMPT101B: A voltage transformer. Provides galvanic isolation and safely reduces 220V voltage to an analog signal read by the ADC. These are the system's eyes in the UPSdevice for monitoring the presence of grid power.",
+      "t15": "HLK-PM01: A compact AC-DC power supply. Converts 220V from the socket into a stable low voltage to power the UPSdevice logic.",
+      "t16": "MT3608: A DC-DC boost converter. Used in the alarmLight and boilDevice to step up the battery voltage to the level required to power addressable strips or motors.",
+      "t17": "LM2596: A DC-DC buck converter. Capable of withstanding high currents. Installed in the comfortAir to stabilize power from powerful 12V sources.",
+      "t18": "ULN2003: A motor driver. Used in the boilDevice to control a stepper motor, amplifying the weak signal from the microcontroller.",
+      "t19": "Relay Module: Used in the comfortAir as a powerful physical switch for closing circuits.",
+      "n4": "Communication Philosophy: Why Radio, Not Wi-Fi?",
+      "t20": "When it comes to smart homes, Wi-Fi (or protocols built on top of it) is generally considered the industry standard. However, for the AntiBlackout concept, such an approach is fatally vulnerable. LockedNet bets on direct radio communication (NRF24L01 / SI24R1) for two fundamental reasons:",
+      "t21": "True Decentralization: The Wi-Fi ecosystem is entirely dependent on the router. If grid power fails in the house and the router shuts down, all smart devices instantly turn into useless pieces of plastic that cannot see each other. LockedNet radio modules create their own independent network where devices communicate with the Hub directly, ignoring the provider's infrastructure or the state of the home network.",
+      "t22": "Energy Efficiency: Maintaining an active Wi-Fi connection requires colossal (for a microcontroller) energy expenditures, measured in tens of milliamperes per second. SI24R1 radio modules allow devices to sleep with a quiescent current of just a few microamperes, waking up for milliseconds only to fire off a short data packet and go back to sleep. This allows devices to operate for months on a single battery."
+    },
+
+    "Bascon": { 
+    }
+}
