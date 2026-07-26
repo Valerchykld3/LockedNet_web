@@ -2,7 +2,45 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply bg-white text-black dark:bg-black dark:text-white;
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+
+  /* Значення для LIGHT режиму */
+  :root {
+    /* Background: #F3F6F4 */
+    --background: #F3F6F4;
+    /* Text: #1C241E */
+    --foreground: #1C241E;
+    /* Accent: #1B4D3E (Темно-зелений) */
+    --primary: #1B4D3E;
+
+    /* Рекомендація: додайте колір для границь, щоб вони не були чисто чорними */
+    --border: #DDE4E0;
+  }
+
+  /* Значення для DARK режиму (спрацьовує, коли html має клас .dark) */
+  .dark {
+    /* Background: #111612 */
+    --background: #111612;
+    /* Text: #E2E9E4 */
+    --foreground: #E2E9E4;
+    /* Accent: #FF6B00 (Помаранчевий) */
+    --primary: #FF6B00;
+
+    /* Гранця для дарк моду */
+    --border: #2A352D;
+  }
+}
+
+@layer base {
+  body {
+    /* Тепер використовуємо семантичні класи Tailwind */
+    @apply bg-background text-foreground border-border;
+
+    /* Твій шрифт */
+    font-family: Arial, Helvetica, sans-serif;
+
+    /* Глобально покращуємо рендеринг шрифтів */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 }

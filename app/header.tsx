@@ -33,9 +33,7 @@ export default function Header() {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
-  // Визначаємо поточну мову та шлях для перемикання
   const isEnglish = pathname.startsWith('/1en');
-  // Нова логіка для /1en та /2uk
   const newPath = isEnglish 
     ? pathname.replace('/1en', '/2uk') || '/2uk' 
     : pathname.replace('/2uk', '/1en');
@@ -45,20 +43,23 @@ export default function Header() {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-black/80 backdrop-blur-md text-black dark:text-white border-b border-gray-200 dark:border-gray-800 transition-colors">
+    // ЗМІНЕНО: bg-background/80, text-foreground, border-border. Видалили dark: класи.
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md text-foreground border-b border-border transition-colors duration-300">
       <nav className="container mx-auto flex items-center justify-between p-4">
         {/* Ліва сторона: Кнопка меню та назва */}
         <div className="flex items-center gap-4">
           <button
             onClick={toggleSidebar}
-            className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800"
+            // ЗМІНЕНО: ховер тепер використовує колір тексту з прозорістю
+            className="p-2 rounded-full hover:bg-foreground/10 transition-colors"
             aria-label="Toggle navigation"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
           <div className="text-2xl font-bold">
-          {/* Посилання на головну тепер залежить від поточної мови */}
-          <Link href={isEnglish ? "/1en" : "/2uk"} className="hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
+          <Link href={isEnglish ? "/1en" : "/2uk"} 
+            // ЗМІНЕНО: текст лого тепер primary (помаранчевий/зелений), ховер трохи світлішає
+            className="text-primary hover:opacity-80 transition-opacity">
             LockedNet
           </Link>
           </div>
@@ -71,7 +72,8 @@ export default function Header() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn profile"
-            className="hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+            // ЗМІНЕНО: hover:text-primary. Видалили dark: класи.
+            className="hover:text-primary transition-colors"
           >
             <LinkedInIcon />
           </a>
@@ -79,18 +81,21 @@ export default function Header() {
           <button
             onClick={toggleTheme}
             aria-label="Перемкнути темний режим"
-            className="hover:text-gray-600 dark:hover:text-gray-300 transition-colors w-6 h-6 flex items-center justify-center"
+            // ЗМІНЕНО: hover:text-primary
+            className="hover:text-primary transition-colors w-6 h-6 flex items-center justify-center"
           >
             {mounted ? (
+              // Іконки автоматично візьмуть колір тексту завдяки currentColor у lucide
               theme === "dark" ? <Sun size={24} /> : <Moon size={24} />
             ) : (
-              <div className="w-6 h-6"></div> // Невидимий блок-заглушка для сервера
+              <div className="w-6 h-6"></div>
             )}
           </button>
 
           <Link
             href={newPath}
-            className="hover:text-gray-600 dark:hover:text-gray-300 transition-colors w-6 h-6 flex items-center justify-center font-semibold"
+            // ЗМІНЕНО: hover:text-primary
+            className="hover:text-primary transition-colors w-6 h-6 flex items-center justify-center font-semibold"
             aria-label="Switch language"
           >
             {isEnglish ? 'UA' : 'EN'}
