@@ -1,17 +1,16 @@
 import { ReactNode } from 'react';
 import { headers } from 'next/headers';
-import { ThemeProvider } from './theme-provider'; // Припускаю, що ти створив цей файл
-import Header from './header'; // Спільний хедер для всього сайту
-import Footer from './footer'; // Новий футер
+import { ThemeProvider } from './theme-provider'; 
+import Header from './header'; 
+import Footer from './footer';
 import { SidebarProvider } from './sidebar-context';
-import './/globals.css'; // Не забудь про стилі!
+import './/globals.css'; 
 
 export default function RootLayout({
   children
 }: {
   children: ReactNode
 }) {
-  // Визначаємо поточний шлях на сервері, щоб встановити правильний lang
   const pathname = headers().get('x-next-pathname') || '';
   const isEnglish = pathname.startsWith('/1en');
   const lang = isEnglish ? 'en' : 'uk';
@@ -22,7 +21,6 @@ export default function RootLayout({
         <SidebarProvider>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <Header />
-            {/* Збільшуємо нижній відступ, щоб футер не перекривав контент */}
             <main className="pt-20 pb-32 p-4 sm:p-8 md:p-12">
               {children}
             </main>

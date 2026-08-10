@@ -23,7 +23,6 @@ export default function Sidebar() {
 
   return (
     <>
-      {/* Сайдбар */}
       <aside
         className={`fixed top-0 left-0 h-full z-30 w-64 bg-white dark:bg-black shadow-lg transform ${
           isOpen ? 'translate-x-0' : '-translate-x-full'

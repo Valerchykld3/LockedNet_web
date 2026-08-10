@@ -9,20 +9,16 @@ export default function Page() {
 
     return (
         <div className="space-y-10 md:space-y-16 pb-16">
-            {/* Головний заголовок */}
             <section id="main" className="text-center pt-8 pb-4">
                 <h1 className="text-3xl md:text-5xl lg:text-7xl font-bold text-primary whitespace-pre-wrap leading-tight">{t.title}</h1>
             </section>
 
-            {/* 1. Вступна секція: МК + РМ */}
-            {/* Оновлено: Додано групу та ефект наведення на всю секцію */}
             <section id="ch1" className="container mx-auto p-6 bg-foreground/5 rounded-3xl border border-border transition-all duration-300 group hover:border-primary hover:shadow-[0_0_30px_rgba(var(--primary-rgb),0.2)] hover:bg-foreground/10">
                 <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
                     <div className="space-y-4 px-6 md:px-0">
                         <p className="text-lg md:text-xl text-left leading-relaxed text-foreground/90 font-light">{t.t1}</p>
                         <p className="text-lg md:text-xl text-left leading-relaxed text-foreground/90 font-light">{t.t2}</p>
                     </div>
-                    {/* РІШЕННЯ: Прибрали hard border та shadow. Залишили overflow, rounding, bg та анімаціюImage. */}
                     <div className="relative w-full h-80 rounded-2xl overflow-hidden transition-transform duration-300 group-hover:scale-[1.02]">
                         <Image
                             src="/3-images/mc-rm.jpg"
@@ -35,14 +31,12 @@ export default function Page() {
                 </div>
             </section>
 
-            {/* 2. Циклічний протокол */}
             <section id="ch02" className="space-y-10 container mx-auto">
                 <div className="text-center space-y-4 max-w-4xl mx-auto">
                     <h2 className="text-3xl md:text-4xl font-bold text-primary">{t.n0}</h2>
                     <p className="text-lg md:text-xl leading-relaxed text-foreground/90 font-light">{t.t01}</p>
                 </div>
                 <div className="grid md:grid-cols-2 gap-6 text-left">
-                    {/* Анімація для карток при наведенні. Посилили shadow та border при hover */}
                     <div className="p-6 bg-foreground/5 rounded-2xl border border-border transition-all duration-300 transform hover:scale-105 hover:border-primary hover:bg-foreground/10 hover:shadow-[0_0_30px_rgba(var(--primary-rgb),0.25)]">
                         <h3 className="font-semibold text-xl mb-2 text-primary/90">Фаза сну (4.85с)</h3>
                         <p className="text-lg md:text-xl leading-relaxed text-foreground/90 font-light">{t.t02}</p>
@@ -59,11 +53,8 @@ export default function Page() {
                 </div>
             </section>
 
-            {/* 3. Енергонезалежність */}
             <section id="ch2" className="space-y-12 container mx-auto px-6 md:px-0">
                 <h2 className="text-3xl md:text-4xl font-bold text-center text-primary">{t.n1}</h2>
-                {/* Блок 1: Акумулятори */}
-                {/* Оновлено: Посилено border та shadow світіння всієї картки при hover */}
                 <div id="q1" className="grid md:grid-cols-2 gap-8 md:gap-12 items-center p-6 bg-foreground/5 rounded-3xl border border-border transition-all duration-300 group hover:border-primary hover:shadow-[0_0_30px_rgba(var(--primary-rgb),0.2)] hover:bg-foreground/10">
                     <div className="space-y-4 font-light">
                         <p className="text-lg md:text-xl text-left leading-relaxed text-foreground/90">{t.t3}</p>
@@ -72,7 +63,6 @@ export default function Page() {
                         <p className="text-lg md:text-xl text-left leading-relaxed text-foreground/90">{t.t32}</p>
                         <p className="text-lg md:text-xl text-left leading-relaxed text-foreground/90">{t.t33}</p>
                     </div>
-                    {/* РІШЕННЯ: Прибрали हार्ड border-4 border-primary та світіння shadow. Додали легкий bg. Анімація наближення group-hover:scale-105. */}
                     <div className="relative w-full h-96 rounded-2xl overflow-hidden transition-transform duration-300 group-hover:scale-[1.02]">
                         <Image
                             src="/3-images/accumulators.jpg"
@@ -84,10 +74,7 @@ export default function Page() {
                     </div>
                 </div>
 
-                {/* Блок 1.5: Монітори заряду */}
-                {/* Оновлено: Ефект наведення на всю картку */}
                 <div id="q1.5" className="grid md:grid-cols-2 gap-8 md:gap-12 items-center p-6 bg-foreground/5 rounded-3xl border border-border transition-all duration-300 group hover:border-primary hover:shadow-[0_0_30px_rgba(var(--primary-rgb),0.2)] hover:bg-foreground/10">
-                    {/* РІШЕННЯ: Прибрали Hard Border та Shadow. */}
                     <div className="relative w-full h-80 rounded-2xl overflow-hidden transition-transform duration-300 group-hover:scale-[1.02]">
                         <Image
                             src="/3-images/tp-ht.jpg"
@@ -100,11 +87,8 @@ export default function Page() {
                     <p className="text-lg md:text-xl text-left leading-relaxed text-foreground/90 font-light">{t.t34}</p>
                 </div>
 
-                {/* Блок 2: Дільник напруги */}
-                {/* Оновлено: Ефект наведення на всю картку */}
                 <div id="q2" className="grid md:grid-cols-2 gap-8 md:gap-12 items-center p-6 bg-foreground/5 rounded-3xl border border-border transition-all duration-300 group hover:border-primary hover:shadow-[0_0_30px_rgba(var(--primary-rgb),0.2)] hover:bg-foreground/10">
                     <p className="text-lg md:text-xl text-left leading-relaxed text-foreground/90 font-light">{t.t4}</p>
-                    {/* РІШЕННЯ: Прибрали Hard Border та Shadow. */}
                     <div className="relative w-full h-80 rounded-2xl overflow-hidden transition-transform duration-300 group-hover:scale-[1.02]">
                         <Image
                             src="/3-images/resistance_divider.png"
@@ -116,10 +100,7 @@ export default function Page() {
                     </div>
                 </div>
 
-                {/* Блок 3: MOSFET-ключі */}
-                {/* Оновлено: Ефект наведення на всю картку */}
                 <div id="q3" className="grid md:grid-cols-2 gap-8 md:gap-12 items-center p-6 bg-foreground/5 rounded-3xl border border-border transition-all duration-300 group hover:border-primary hover:shadow-[0_0_30px_rgba(var(--primary-rgb),0.2)] hover:bg-foreground/10">
-                    {/* РІШЕННЯ: Прибрали Hard Border та Shadow. */}
                     <div className="relative w-full h-72 rounded-2xl overflow-hidden transition-transform duration-300 group-hover:scale-[1.02]">
                         <Image
                             src="/3-images/mosfets-res.jpg"
@@ -139,46 +120,36 @@ export default function Page() {
 
 
 
-            {/* 4. Цифрові шини передачі даних */}
             <section id="ch3" className="space-y-12 container mx-auto">
                 <div className="text-center space-y-4 max-w-4xl mx-auto">
                     <h2 className="text-3xl md:text-4xl font-bold text-primary">{t.n2}</h2>
                     <p className="text-lg md:text-xl leading-relaxed text-foreground/90 font-light">{t.t7}</p>
                 </div>
 
-                {/* Блок про SPI */}
-                {/* Оновлено: Ефект наведення на всю картку */}
                 <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center p-6 bg-foreground/5 rounded-3xl border border-border transition-all duration-300 group hover:border-primary hover:shadow-[0_0_30px_rgba(var(--primary-rgb),0.2)] hover:bg-foreground/10">
                     <div className="space-y-3">
                         <h3 className="font-semibold text-2xl text-primary/90">SPI</h3>
                         <p className="text-lg md:text-xl text-left leading-relaxed text-foreground/90 font-light">{t.t8}</p>
                     </div>
-                    {/* РІШЕННЯ ДЛЯ РАМКИ: Прибрали border-4 border-primary та shadow світіння. overflow-hidden. rounded. */}
                     <div className="relative w-full h-80 rounded-2xl overflow-hidden transition-transform duration-300 group-hover:scale-[1.02]">
                         <Image
                             src="/3-images/antena-ssd.jpg"
                             alt="spi modules"
                             fill 
-                            /* РІШЕННЯ: contain для технічних схем, де важливі краї. class p-4 залишаємо. */
                             style={{ objectFit: 'contain' }}
                             className="p-4 transition-transform duration-500 group-hover:scale-105"
                         />
                     </div>
                 </div>
 
-                {/* Блок про I2C */}
                 <div className="p-6 bg-foreground/5 rounded-3xl border border-border transition-all duration-300 transform hover:scale-105 hover:border-primary hover:shadow-[0_0_30px_rgba(var(--primary-rgb),0.2)] hover:bg-foreground/10">
                     <h3 className="font-semibold text-2xl text-primary/90 mb-3">I²C</h3>
                     <p className="text-lg md:text-xl text-left leading-relaxed text-foreground/90 font-light">{t.t9}</p>
                 </div>
 
-                {/* Картки модулів I2C */}
                 <div className="grid md:grid-cols-3 gap-8 items-start text-center">
-                    {/* Картка 1: SCD40 */}
-                    {/* Оновлено: Посилено border та shadow світіння всієї картки при hover */}
                     <div className="p-6 bg-foreground/5 rounded-2xl border border-border space-y-4 transition-all duration-300 transform hover:scale-105 hover:border-primary hover:shadow-[0_0_30px_rgba(var(--primary-rgb),0.25)] hover:bg-foreground/10 group">
                         <p className="text-lg md:text-xl text-left leading-relaxed text-foreground/90 font-light">{t.t10}</p>
-                        {/* РІШЕННЯ ДЛЯ РАМКИ: Прибрали Hard Border та Shadow. overflow-hidden. */}
                         <div className="relative w-full h-64 rounded-xl overflow-hidden transition-transform duration-300 group-hover:scale-[1.02]">
                             <Image
                             src="/3-images/scd40.png"
@@ -189,11 +160,8 @@ export default function Page() {
                         />
                         </div>
                     </div>
-                    {/* Картка 2: OLED */}
-                    {/* Оновлено: Посилено border та shadow світіння всієї картки при hover */}
                     <div className="p-6 bg-foreground/5 rounded-2xl border border-border space-y-4 transition-all duration-300 transform hover:scale-105 hover:border-primary hover:shadow-[0_0_30px_rgba(var(--primary-rgb),0.25)] hover:bg-foreground/10 group">
                         <p className="text-lg md:text-xl text-left leading-relaxed text-foreground/90 font-light">{t.t11}</p>
-                        {/* РІШЕННЯ ДЛЯ РАМКИ: Прибрали Hard Border та Shadow. overflow-hidden. */}
                         <div className="relative w-full h-64 rounded-xl overflow-hidden transition-transform duration-300 group-hover:scale-[1.02]">
                             <Image
                             src="/3-images/oled.jpg"
@@ -204,11 +172,8 @@ export default function Page() {
                         />
                         </div>
                     </div>
-                    {/* Картка 3: DS3231 */}
-                    {/* Оновлено: Посилено border та shadow світіння всієї картки при hover */}
                     <div className="p-6 bg-foreground/5 rounded-2xl border border-border space-y-4 transition-all duration-300 transform hover:scale-105 hover:border-primary hover:shadow-[0_0_30px_rgba(var(--primary-rgb),0.25)] hover:bg-foreground/10 group">
                         <p className="text-lg md:text-xl text-left leading-relaxed text-foreground/90 font-light">{t.t12}</p>
-                        {/* РІШЕННЯ ДЛЯ РАМКИ: Прибрали Hard Border та Shadow. overflow-hidden. */}
                         <div className="relative w-full h-64 rounded-xl overflow-hidden transition-transform duration-300 group-hover:scale-[1.02]">
                             <Image
                             src="/3-images/rtc.jpg"
@@ -226,40 +191,31 @@ export default function Page() {
 
 
 
-            {/* 5. Периферія та силова електроніка */}
             <section id="ch4" className="space-y-12 container mx-auto">
                 <div className="text-center space-y-4 max-w-4xl mx-auto">
                     <h2 className="text-3xl md:text-4xl font-bold text-primary">{t.n3}</h2>
                     <p className="text-lg md:text-xl leading-relaxed text-foreground/90 font-light">{t.t13}</p>
                 </div>
 
-                {/* Блок 1: ZMPT101B */}
-                {/* Оновлено: Ефект наведення на всю картку */}
                 <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center p-6 bg-foreground/5 rounded-3xl border border-border transition-all duration-300 group hover:border-primary hover:shadow-[0_0_30px_rgba(var(--primary-rgb),0.2)] hover:bg-foreground/10">
                     <p className="text-lg md:text-xl text-left leading-relaxed text-foreground/90 font-light">{t.t14}</p>
-                    {/* РІШЕННЯ ДЛЯ РАМКИ: Прибрали Hard Border та Shadow. rounding. overflow-hidden. */}
                     <div className="relative w-full h-80 rounded-2xl overflow-hidden transition-transform duration-300 group-hover:scale-[1.02]">
                         <Image
                             src="/3-images/zmpt101b.png"
                             alt="ZMPT101B"
                             fill 
-                            /* РІШЕННЯ: технічна схема, p-4 залишаємо. */
                             style={{ objectFit: 'contain' }}
                             className="p-4 transition-transform duration-500 group-hover:scale-105"
                         />
                     </div>
                 </div>
 
-                {/* Блок 2: HLK-PM01 */}
-                {/* Оновлено: Ефект наведення на всю картку */}
                 <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center p-6 bg-foreground/5 rounded-3xl border border-border transition-all duration-300 group hover:border-primary hover:shadow-[0_0_30px_rgba(var(--primary-rgb),0.2)] hover:bg-foreground/10">
-                    {/* РІШЕННЯ ДЛЯ РАМКИ: Прибрали Hard Border та Shadow. rounding. overflow-hidden. */}
                     <div className="relative w-full h-80 rounded-2xl overflow-hidden transition-transform duration-300 group-hover:scale-[1.02]">
                         <Image
                             src="/3-images/hlk-pm01.jpg"
                             alt="HLK-PM01"
                             fill 
-                            /* РІШЕННЯ: технічна схема, p-4 залишаємо. */
                             style={{ objectFit: 'contain' }}
                             className="p-4 transition-transform duration-500 group-hover:scale-105"
                         />
@@ -267,33 +223,25 @@ export default function Page() {
                     <p className="text-lg md:text-xl text-left leading-relaxed text-foreground/90 font-light">{t.t15}</p>
                 </div>
 
-                {/* Блок 3: MT3608 */}
-                {/* Оновлено: Ефект наведення на всю картку */}
                 <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center p-6 bg-foreground/5 rounded-3xl border border-border transition-all duration-300 group hover:border-primary hover:shadow-[0_0_30px_rgba(var(--primary-rgb),0.2)] hover:bg-foreground/10">
                     <p className="text-lg md:text-xl text-left leading-relaxed text-foreground/90 font-light">{t.t16}</p>
-                    {/* РІШЕННЯ ДЛЯ РАМКИ: Прибрали Hard Border та Shadow. rounding. overflow-hidden. */}
                     <div className="relative w-full h-80 rounded-2xl overflow-hidden transition-transform duration-300 group-hover:scale-[1.02]">
                         <Image
                             src="/3-images/mt3608.jpg"
                             alt="MT3608"
                             fill 
-                            /* РІШЕННЯ: технічна схема, p-4 залишаємо. */
                             style={{ objectFit: 'contain' }}
                             className="p-4 transition-transform duration-500 group-hover:scale-105"
                         />
                     </div>
                 </div>
 
-                {/* Блок 4: LM2596 */}
-                {/* Оновлено: Ефект наведення на всю картку */}
                 <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center p-6 bg-foreground/5 rounded-3xl border border-border transition-all duration-300 group hover:border-primary hover:shadow-[0_0_30px_rgba(var(--primary-rgb),0.2)] hover:bg-foreground/10">
-                    {/* РІШЕННЯ ДЛЯ РАМКИ: Прибрали Hard Border та Shadow. rounding. overflow-hidden. */}
                     <div className="relative w-full h-80 rounded-2xl overflow-hidden transition-transform duration-300 group-hover:scale-[1.02]">
                         <Image
                             src="/3-images/lm2596.jpg"
                             alt="LM2596"
                             fill 
-                            /* РІШЕННЯ: технічна схема, p-4 залишаємо. */
                             style={{ objectFit: 'contain' }}
                             className="p-4 transition-transform duration-500 group-hover:scale-105"
                         />
@@ -301,17 +249,13 @@ export default function Page() {
                     <p className="text-lg md:text-xl text-left leading-relaxed text-foreground/90 font-light">{t.t17}</p>
                 </div>
 
-                {/* Блок 5: Модуль реле */}
-                {/* Оновлено: Ефект наведення на всю картку */}
                 <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center p-6 bg-foreground/5 rounded-3xl border border-border transition-all duration-300 group hover:border-primary hover:shadow-[0_0_30px_rgba(var(--primary-rgb),0.2)] hover:bg-foreground/10">
                     <p className="text-lg md:text-xl text-left leading-relaxed text-foreground/90 font-light">{t.t19}</p>
-                    {/* РІШЕННЯ ДЛЯ РАМКИ: Прибрали Hard Border та Shadow. rounding. overflow-hidden. */}
                     <div className="relative w-full h-80 rounded-2xl overflow-hidden transition-transform duration-300 group-hover:scale-[1.02]">
                         <Image
                             src="/3-images/rele.jpg"
                             alt="rele"
                             fill 
-                            /* РІШЕННЯ: технічна схема, p-4 залишаємо. */
                             style={{ objectFit: 'contain' }}
                             className="p-4 transition-transform duration-500 group-hover:scale-105"
                         />
@@ -324,7 +268,6 @@ export default function Page() {
 
 
 
-            {/* 6. Філософія зв'язку */}
             <section id="ch5" className="space-y-12 container mx-auto">
                 <div className="text-center space-y-4 max-w-4xl mx-auto">
                     <h2 className="text-3xl md:text-4xl font-bold text-primary">{t.n4}</h2>

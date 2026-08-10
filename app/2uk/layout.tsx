@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import Sidebar from './sidebar'; // Підключаємо український сайдбар
+import Sidebar from './sidebar';
 
 export default function UkLayout({
   children

@@ -11,7 +11,7 @@ const LinkedInIcon = () => (
     height="24"
     viewBox="0 0 24 24"
     fill="none"
-    stroke="currentColor" // SVG бере колір тексту currentColor
+    stroke="currentColor" 
     strokeWidth="2"
     strokeLinecap="round"
     strokeLinejoin="round"
@@ -28,29 +28,22 @@ export default function Footer() {
   const t = isEnglish ? messagesEn.Futter : messagesUk.Futter;
 
   return (
-    // ЗМІНЕНО: Семантичні класи: bg-background/90, text-foreground, border-border. Видалили dark: класи.
     <footer className="fixed bottom-0 left-0 right-0 z-40 bg-background/90 backdrop-blur-sm text-foreground border-t border-border transition-colors duration-300">
       <div className="container mx-auto p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-        {/* Ліва сторона */}
-        {/* ЗМІНЕНО: Назва тепер акцентного кольору (primary) */}
         <div className="text-lg font-bold text-primary">
           {t.title}
         </div>
 
-        {/* Центральний текст */}
-        {/* ЗМІНЕНО: text-foreground/80 (трохи прозорий) замість gray-600/dark:gray-400 */}
         <div className="text-center text-xs sm:text-sm text-foreground/80 max-w-2xl font-light">
           {t.t}
         </div>
 
-        {/* Права сторона */}
         <div className="flex items-center">
           <a
             href="https://www.linkedin.com/in/valerii-artiukh"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn profile"
-            // ЗМІНЕНО: transition-colors, text-foreground, hover:text-primary (акцентний ховер)
             className="text-foreground/80 hover:text-primary transition-colors duration-300"
           >
             <LinkedInIcon />

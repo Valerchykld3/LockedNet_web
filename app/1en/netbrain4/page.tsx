@@ -8,7 +8,6 @@ const t = messagesUk.Netbrain;
 export default function Page() {
     return (
         <div className="space-y-16 md:space-y-24">
-            {/* Головний заголовок */}
             <section id="main" className="text-center pt-8 pb-4 space-y-6">
                 <h1 className="text-3xl md:text-5xl lg:text-7xl font-bold text-primary whitespace-pre-wrap leading-tight">
                     {t.title}
@@ -27,7 +26,6 @@ export default function Page() {
                                                                     </div>
             </section>
 
-            {/* Розділ 1: Зображення Хаба та опис (Стиль: Картка з гридом, анімація при наведенні group) */}
             <section id="ch1" className="space-y-8">
                 <h2 className="text-3xl md:text-4xl font-bold text-primary text-center">
                     {t.n1}
@@ -35,7 +33,6 @@ export default function Page() {
                 
                 <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center p-6 bg-foreground/5 rounded-3xl border border-border transition-all duration-300 transform group hover:scale-[1.02] hover:border-primary hover:shadow-lg hover:bg-foreground/10">
                     
-                    {/* Контейнер зображення з анімацією як у референсі */}
                     <div className="relative w-full h-96 sm:h-[30rem] rounded-2xl overflow-hidden transition-transform duration-300 group-hover:scale-[1.02]">
                                             <Image 
                                                 src="/5-images/Hub.png" 
@@ -46,7 +43,6 @@ export default function Page() {
                                             />
                                         </div>
 
-                    {/* Текстова частина */}
                     <div className="space-y-4">
                         <p className="text-lg md:text-xl text-left leading-relaxed text-foreground/90 font-light">
                             {t.t2}
@@ -64,7 +60,6 @@ export default function Page() {
                 </div>
             </section>
 
-            {/* Розділ 2: Опис (Стиль: Велика рамка з легкою анімацією scale-[1.01]) */}
             <section id="ch2" className="p-8 bg-foreground/5 rounded-3xl border border-border transition-all duration-300 transform hover:scale-[1.01] hover:border-primary hover:bg-foreground/10 hover:shadow-lg">
                 <div className="text-center space-y-4 max-w-4xl mx-auto">
                     <h2 className="text-3xl md:text-4xl font-bold text-primary">{t.n2}</h2>
@@ -85,7 +80,6 @@ export default function Page() {
                 </div>
             </section>
 
-            {/* Розділ 3: Список (Стиль: Велика рамка group, текст + список) */}
             <section id="ch3" className="space-y-8">
                 <h2 className="text-3xl md:text-4xl font-bold text-primary text-center">
                     {t.n3}
@@ -112,7 +106,6 @@ export default function Page() {
                 </div>
             </section>
 
-            {/* Кнопка переходу на наступну сторінку */}
             <section id="nextPage" className="py-20 sm:py-15 border-t border-border mt-6 container mx-auto">
                 <div className="text-center pt-3">
                     <Link 

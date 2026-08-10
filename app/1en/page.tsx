@@ -7,17 +7,13 @@ const t = messagesUk.HomePage;
 
 export default function Page() {
   return (
-    // Зменшуємо проміжки між секціями для компактності
     <div className="space-y-10 md:space-y-16 pb-16">
-      {/* 1. Головна секція з фоновим зображенням */}
       <section
         id="main"
         className="relative flex items-center justify-start -mx-4 sm:-mx-8 md:-mx-12 -mt-4 sm:-mt-8 md:-mt-12 aspect-[16/9] w-[calc(100%+2rem)] sm:w-[calc(100%+4rem)] md:w-[calc(100%+6rem)] bg-contain bg-center bg-no-repeat transition-all duration-500 bg-hero-pattern border-b border-border"
       >
         
-        {/* Контейнер для контенту, зберігаємо text-left, як ми зробили */}
         <div className="container mx-auto px-6 sm:px-12 relative z-10 text-left">
-          {/* ЗМІНЕНО: Базовий розмір text-3xl (для телефонів). lg:text-5xl (для десктопів). whitespace-pre-line на мобільних прибираємо. */}
           <h1 className="
             text-2xl md:text-5xl 
             lg:text-7xl font-bold text-primary -mt-5
@@ -28,18 +24,15 @@ export default function Page() {
         </div>
       </section>
 
-      {/* 2. Секція "Темрява, що стала рутиною" */}
       <section id="blackouts" className="py-6 sm:py-8 container mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-primary text-center mb-6 sm:mb-8">{t.n1}</h2>
         <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
           <p className="text-lg text-left leading-relaxed text-foreground/90 font-light px-6">{t.t1}</p>
-          {/* ЗМІНЕНО: Контур border-4 border-primary, shadow світіння. Висота h-64 md:h-full. overflow-hidden. */}
           <div className="relative w-full h-64 md:h-full rounded-2xl overflow-hidden border-4 border-primary shadow-[0_0_20px_rgba(var(--primary-rgb),0.4)]">
             <Image 
               src="/images/blackout.webp" 
               alt="Відключення світла" 
               fill 
-              /* ЗМІНЕНО: contain -> cover, щоб заповнити рамку */
               style={{ objectFit: 'cover' }}
               className="transition-transform duration-500 hover:scale-105" 
             />
@@ -47,7 +40,6 @@ export default function Page() {
         </div>
       </section>
 
-      {/* 3. Секція з інформацією про LockedNet та логотипом */}
       <section id="baseinfo" className="py-6 sm:py-8 bg-foreground/5 rounded-3xl container mx-auto">
         <div className="grid md:grid-cols-[2fr,1fr] gap-8 md:gap-12 items-center px-6 sm:px-12">
           <div className="space-y-6 sm:space-y-8 text-left">
@@ -66,28 +58,21 @@ export default function Page() {
         </div>
       </section>
 
-      {/* 4. Секція "Стратегія тривожної кімнатки" */}
       <section id="advices" className="py-6 sm:py-8 container mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-primary text-center mb-6 sm:mb-8">{t.n2}</h2>
         <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-          {/* ЗМІНЕНО: Контур border-4 border-primary, shadow світіння. overflow-hidden. */}
           <div className="relative w-full h-72 md:h-96 rounded-2xl overflow-hidden bg-background border-4 border-primary shadow-[0_0_20px_rgba(var(--primary-rgb),0.4)]">
-            {/* Логіка перемикання зображень */}
-            {/* Light theme image */}
             <Image 
               src="/images/alroom-light.png" 
               alt="Стратегія тривожної кімнатки (Light mode)" 
               fill 
-              /* ЗМІНЕНО: contain -> cover, щоб заповнити рамку */
               style={{ objectFit: 'cover' }}
               className="block dark:hidden" 
             />
-            {/* Dark theme image */}
             <Image 
               src="/images/alroom-black.png" 
               alt="Стратегія тривожної кімнатки (Dark mode)" 
               fill 
-              /* ЗМІНЕНО: contain -> cover, щоб заповнити рамку */
               style={{ objectFit: 'cover' }}
               className="hidden dark:block filter dark:brightness-110" 
             />
@@ -96,7 +81,6 @@ export default function Page() {
         </div>
       </section>
 
-      {/* 5. Секція з посиланням на наступну сторінку */}
       <section id="nextPage" className="py-6 sm:py-8 border-t border-border mt-6 container mx-auto">
         <div className="max-w-4xl mx-auto text-left space-y-4">
           <p className="text-lg leading-relaxed text-foreground/90 font-light">{t.t5}</p>
