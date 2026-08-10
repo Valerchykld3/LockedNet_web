@@ -14,15 +14,14 @@
     "ch1": "High-Level Ecosystem: General Network Architecture", 
     "ch2": "Network Physics: Hardware Modules and Communication Protocols",
     "ch3": "Basic Control: Interface and Local Server",
-    "ch4": "The Brain of the System: Hub Architecture (Hardware & Software)",
+    "ch4": "Network Brain: Main Hub (Hardware & Software)",
     "ch5": "Help-Beacon: Mobile Repeater",
     "ch6": "Peripherals: Actuator Devices (Catalog)",
-    "ch7": "AntiBlackout Protocol",
-    "ch8": "Iron Chatting Protocol"
+    "ch7": "AntiBlackout Protocol"
   },
 
   "HomePage": {
-    "title": "AntiBlackout system LockedNet",
+    "title": "AntiBlackout system\nLockedNet",
     "n1": "When Darkness Becomes Routine",
     "t1": "Ukraine's energy infrastructure regularly suffers critical damage, turning prolonged power outages into a daily ordeal. A blackout is more than just a lack of lighting. It means paralyzed heating systems during winter frosts, unbearable heat and halted water supply in summer, kilometer-long queues of de-energized public transport, severed communication networks, and the disruption of a modern person's basic needs. In such extreme conditions, total dependence on the centralized grid and internet providers becomes not just an inconvenience, but a critical vulnerability.",
     "t2": "LockedNet is a decentralized anti-blackout ecosystem designed for absolute independence from external networks. The heart of the system, the Main Hub, utilizes its own radio channels to coordinate a network of autonomous devices, eliminating the need for Wi-Fi routers.",
@@ -38,8 +37,7 @@
     "title": "High-Level Ecosystem: General Network Architecture",
     "t1": "Before diving into the low-level principles of protocol operation, it is worth getting to know the \"players\" on the field. This page is a bird's-eye view of the LockedNet architecture. We will look at the big picture of the network without a magnifying glass and a soldering iron to understand who transmits data to whom and how",
     "n1": "The Brain of Operations: The Main Hub",
-    "t2": "First of all, it is only fair to start with the Hub — it is both the central processor and the main repeater of the ecosystem.",
-    "td2": "It receives data packets and commands from the user, filters them, and decides where to route the requests next. Besides routing, the Hub can execute its own internal commands (more developmental and informational than executive). The device is equipped with a display to show its current status in real time: battery charge, connection status, and system notifications. The Hub meticulously records all network activities into its own logging system.",
+    "t2": "First of all, it is only fair to start with the Hub — it is both the central processor and the main repeater of the ecosystem.\nIt receives data packets and commands from the user, filters them, and decides where to route the requests next. Besides routing, the Hub can execute its own internal commands (more developmental and informational than executive). The device is equipped with a display to show its current status in real time: battery charge, connection status, and system notifications. The Hub meticulously records all network activities into its own logging system.",
     "n2": "Entry Points: How to Control the System",
     "t3": "The full-fledged interface for interacting with LockedNet is located directly on the web resource, optimized for convenient smartphone use. This site is not hosted on the public internet — it is deployed locally via the HTTP protocol around the receiving devices. Thus, the smartphone becomes the first link in the logical chain of the ecosystem's control.",
     "t4": "Since the smartphone and the Hub physically \"speak\" different languages (hosting an HTTP server directly on the Hub's microcontroller is suicide for the battery), receiving devices (repeaters) stand between them. There are two of them in the ecosystem:",
@@ -53,7 +51,8 @@
     "t10": "meteoDevice: The microclimate analyzer. It monitors temperature, humidity, and carbon dioxide (CO2) levels in the room. This data is displayed on the smartphone screen and simultaneously analyzed by the Hub for the protocol's operation.",
     "n5": "Action Modules (Environment Manipulators):",
     "t11": "energyHub: an \"all-in-one\" device engineered to create an ideal microclimate within a safe room. This powerful unit is powered by an external 12V battery and integrates heating, humidification, and air ventilation systems within a single enclosure. Beyond climate control, the device manages an adaptive lighting system based on a 12V lamp with a PWM brightness regulator. Furthermore, energyHub features a universal power interface to charge mobile devices (smartphones, laptops) and even specialized low-voltage appliances, such as a portable electric hotplate.",
-    "t12": "boilDevice: A pleasant whim beyond the core survival functionality. This is a mechanical manipulator (servo drive) that, upon command, physically presses the button on an electric kettle and returns to its original position. It does not participate in safety protocols, but guarantees that hot coffee will be waiting for me upon returning home."
+    "t12": "boilDevice: A pleasant whim beyond the core survival functionality. This is a mechanical manipulator (servo drive) that, upon command, physically presses the button on an electric kettle and returns to its original position. It does not participate in safety protocols, but guarantees that hot coffee will be waiting for me upon returning home.",
+    "link": "Go to Network Physics"
   },
 
   "Netph": {
@@ -70,10 +69,18 @@
       "t05": "If a device needs to send an urgent signal (rather than listening to the air), it does not wait for its 0.15s window. It initiates transmission and \"blasts the packet\" into the air continuously for 10 seconds. This ensures that the receiving device, operating on the standard 5-second cycle, will definitely wake up (at least twice during these 10 seconds), hear the signal, and have time to send an acknowledgment of successful reception. If no feedback is received, the initiator returns an error.",
 
       "n1": "Energy Independence: Power and Control",
-      "t3": "The power system is standardized and optimized for extended autonomy in conditions of a complete power grid absence.\nDevices are powered by 18650 form-factor Li-ion batteries with a capacity of 3000 mAh (of which the average usable capacity is 2700 mAh due to inevitable losses).\nThanks to the cyclic protocol described above, the theoretical autonomous operating time of peripheral devices in background mode is:\n2700 mAh / 1.3 mA ≈ 2077 hours ≈ 86 days.\nThe Main Hub features a more powerful NRF24L01+PA+LNA radio module, consuming ~45 mA in receive mode. The Hub's active phase can require up to 70 mA.\nTo compensate for this, the Hub is equipped with three parallel-connected 18650 batteries, providing a total usable capacity of ~8100 mAh.\nThe average background consumption of the Hub is ≈ 2.2 mA. Theoretical autonomy:\n8100 mAh / 2.2 mA ≈ 3681 hours ≈ 153 days.\nThese calculations are provided for background mode. The operation of power/logic peripherals increases consumption, so real operating time may be 20-30% lower, depending on the frequency of active function use.\nThe charging process for devices is controlled by a TP4056-based module. To ensure the critical stable voltage of 3.3V required for the safe operation of the microcontroller and radio modules, an HT7333-A regulator with ultra-low quiescent current is used. Some devices feature additional architectural power enhancements.",
-      "t4": "Charge Monitoring: The initial concept involved using a MAX17043 module for precise hardware-based charge level determination. However, due to a shortage of quality modules on the market and a desire to maintain modularity (without soldering bare SMD components), the architecture was changed. Now, battery charge (specifically, voltage) is measured directly through the microcontroller's ADC using an analog voltage divider on two 10 kΩ resistors, protecting the MCU pin from damage.",
+      "t3": "The power system is standardized and optimized for extended autonomy in conditions of a complete power grid absence.\nDevices are powered by 18650 form-factor Li-ion batteries with a capacity of 3000 mAh (of which the average usable capacity is 2700 mAh due to inevitable losses).\nThanks to the cyclic protocol described above, the theoretical autonomous operating time of peripheral devices in background mode is:",
       
+      "t30": "2700 mAh / 1.3 mA ≈ 2077 hours ≈ 86 days.",
+      "t31": "The Main Hub features a more powerful NRF24L01+PA+LNA radio module, consuming ~45 mA in receive mode. The Hub's active phase can require up to 70 mA.\nTo compensate for this, the Hub is equipped with three parallel-connected 18650 batteries, providing a total usable capacity of ~8100 mAh.\nThe average background consumption of the Hub is ≈ 2.2 mA. Theoretical autonomy:",
+      "t32": "8100 mAh / 2.2 mA ≈ 3681 hours ≈ 153 days.",
+      "t33": "These calculations are provided for background mode. The operation of power/logic peripherals increases consumption, so real operating time may be 20-30% lower, depending on the frequency of active function use.",
+
+      "t34": "The charging process for devices is controlled by a TP4056-based module. To ensure the critical stable voltage of 3.3V required for the safe operation of the microcontroller and radio modules, an HT7333-A regulator with ultra-low quiescent current is used. Some devices feature additional architectural power enhancements.",
+
+      "t4": "Charge Monitoring: The initial concept involved using a MAX17043 module for precise hardware-based charge level determination. However, due to a shortage of quality modules on the market and a desire to maintain modularity (without soldering bare SMD components), the architecture was changed. Now, battery charge (specifically, voltage) is measured directly through the microcontroller's ADC using an analog voltage divider on two 10 kΩ resistors, protecting the MCU pin from damage.",
       "t6": "Analog Optimizations: To guarantee stable logic levels in the circuits, 10 kΩ pull-up or pull-down resistors are used. The alarmLight and boilDevice hardware are additionally equipped with n-channel MOSFET transistors. They function as electronic keys, physically cutting off power from the power stages in standby mode so that they do not consume energy in the background.",
+      
       "n2": "Digital Data Transmission Buses",
       "t7": "Data exchange within devices (between the MCU and peripherals) occurs over two main digital buses:",
       "t8": "The SPI (Serial Peripheral Interface) bus is used for high-speed synchronous data exchange. SPI technology is ideal for modules requiring instant reaction and high throughput. In the ecosystem, SI24R1 radio modules \"sit\" on this bus. The Main Hub has a more complex architecture: two devices are connected to its SPI bus at once—a powerful NRF24L01 radio module with an amplifier (PA+LNA) and a MicroSD adapter for event logging. To avoid bus collisions when both modules try to \"shout\" to the microcontroller simultaneously, pull-up resistors are installed on their CSN (Chip Select Not) pins.",
@@ -81,6 +88,7 @@
       "t10": "SCD40: A high-precision temperature, humidity, and CO2 level sensor (installed in the meteoDevice). Like the radio modules, it requires its own electrolytic capacitor on the power supply for stable readings.",
       "t11": "OLED 0.96\": An energy-efficient display. Its technology lies in the fact that each pixel is a separate organic light-emitting diode that emits light itself, so black color consumes no energy at all. Used in the Hub and meteoDevice.",
       "t12": "DS3231: A hardware Real-Time Clock (RTC) module with its own battery. Installed in the Hub so the system does not lose track of time even after a deep discharge or forced restart.",
+      
       "n3": "Peripherals and Power Electronics",
       "t13": "To interact with the physical world, LockedNet modules use specialized electronics:",
       "t14": "ZMPT101B: A voltage transformer. Provides galvanic isolation and safely reduces 220V voltage to an analog signal read by the ADC. These are the system's eyes in the UPSdevice for monitoring the presence of grid power.",
@@ -89,30 +97,43 @@
       "t17": "LM2596: A DC-DC buck converter. Capable of withstanding high currents. Installed in the comfortAir to stabilize power from powerful 12V sources.",
       "t18": "ULN2003: A motor driver. Used in the boilDevice to control a stepper motor, amplifying the weak signal from the microcontroller.",
       "t19": "Relay Module: Used in the comfortAir as a powerful physical switch for closing circuits.",
+      
       "n4": "Communication Philosophy: Why Radio, Not Wi-Fi?",
       "t20": "When it comes to smart homes, Wi-Fi (or protocols built on top of it) is generally considered the industry standard. However, for the AntiBlackout concept, such an approach is fatally vulnerable. LockedNet bets on direct radio communication (NRF24L01 / SI24R1) for two fundamental reasons:",
       "t21": "True Decentralization: The Wi-Fi ecosystem is entirely dependent on the router. If grid power fails in the house and the router shuts down, all smart devices instantly turn into useless pieces of plastic that cannot see each other. LockedNet radio modules create their own independent network where devices communicate with the Hub directly, ignoring the provider's infrastructure or the state of the home network.",
-      "t22": "Energy Efficiency: Maintaining an active Wi-Fi connection requires colossal (for a microcontroller) energy expenditures, measured in tens of milliamperes per second. SI24R1 radio modules allow devices to sleep with a quiescent current of just a few microamperes, waking up for milliseconds only to fire off a short data packet and go back to sleep. This allows devices to operate for months on a single battery."
+      "t22": "Energy Efficiency: Maintaining an active Wi-Fi connection requires colossal (for a microcontroller) energy expenditures, measured in tens of milliamperes per second. SI24R1 radio modules allow devices to sleep with a quiescent current of just a few microamperes, waking up for milliseconds only to fire off a short data packet and go back to sleep. This allows devices to operate for months on a single battery.",
+      
+      "link": "Go to basic control"
     },
 
     "Bascon": { 
       "title": "Basic Control: Interface and Local Server",
       "t1": "This page describes the first and primary interaction scenario with LockedNet—controlling the ecosystem via the home Wi-Fi network during \"peacetime\", when 220V grid power is present in the house and a local PC is running.\nIt is important to understand that this is only one of three control types. The main goal of this approach is to ensure maximum convenience and instant access to functions when already connected to the home local network, without the need for reconnections.",
+      
       "n1": "Architecture and Data Transfer Logic",
-      "t2": "A full interface for interacting with LockedNet is implemented as a lightweight web application. This site does not hang on the public internet—it is raised locally around a Python-based local server. The user's smartphone becomes the first link in the logical control chain of the ecosystem, connecting to the home Wi-Fi router.\nThe logical chain of command flow looks like this:\nSmartphone (Browser) -> Home Router (Wi-Fi) -> Local PC (Python/Flask Server) -> COM Port (USB Type-C) -> Main Hub (ESP32) -> NRF Radio Channel -> Actuator Device -> and back.",
+      "t2": "A full interface for interacting with LockedNet is implemented as a lightweight web application. This site does not hang on the public internet—it is raised locally around a Python-based local server. The user's smartphone becomes the first link in the logical control chain of the ecosystem, connecting to the home Wi-Fi router.\nThe logical chain of command flow looks like this:",
+      "t200": "Smartphone (Browser) -> Home Router (Wi-Fi) -> Local PC (Python/Flask Server) -> COM Port (USB Type-C) -> Main Hub (ESP32) -> NRF Radio Channel -> Actuator Device -> and back.",
+
       "n2": "Technical Specifics of Communication:",
       "t3": "Although the Main Hub is based on a powerful MCU, the ESP32 v1, an HTTP server for this type of connection is not raised on it. This is done for the sake of energy saving: the ESP32 is connected to the PC via a UART-COM port, and the PC itself (which is already on) assumes the role of the web server. This allows the ESP32 to focus on working with the radio waves without wasting energy on servicing heavy HTTP requests.",
+      
       "n3": "Technical Stack and Security",
       "t4": "The LockedNet MVP web interface is an example of \"sufficient minimalism\". It is built on \"bare\" HTML, CSS, and JavaScript, without using bulky modern frameworks.\nSTack:",
       "t40": "Front-end: HTML + CSS + JS.",
       "t41": "Back-end: Python with the Flask microframework.",
       "t42": "Physical Connection: HTTP protocol.",
+      
       "n4": "Security",
       "t5": "Since the application operates exclusively inside the local network, the security requirements are rationally minimized. Nevertheless, basic protection against unauthorized interference is implemented thanks to Flask. Access to the interface begins with an authorization page, where the server verifies a username and password stored in an encrypted format in a users.json file on the PC.",
+      
       "n5": "User Path: Interface Structure",
-      "t6": "The application is broken down into several logical pages, each responsible for its own part of the functionality.\n1. Authorization\nThe first page a user sees. Username and password data must be entered to log in to the account.\n2. Main Menu\nAfter a successful login, the main navigation menu opens, providing quick access to the following sections:",
+      "t6": "The application is broken down into several logical pages, each responsible for its own part of the functionality.",
+      "t600": "1. Authorization. The first page a user sees. Username and password data must be entered to log in to the account.",
+      "t601": "2. Main Menu. After a successful login, the main navigation menu opens, providing quick access to the following sections.",
+      
       "n6": "Control and Command Structure (POST Packet)",
       "t7": "Command transmission from the server to the Hub occurs using HTTP requests of the POST type. Each request contains a data packet in the format id|cmd|src, where id is a unique module number, and cmd is a specific command for this module.\nBesides the ID and command, the server adds a critically important src variable, which indicates the transmission source. When connected via home Wi-Fi, src=\"wifi\". When the Hub receives a packet from the home NRF radio channel, thanks to src=\"wifi\", it understands that feedback from the device must be sent back into the COM port in the PC.",
+      
       "n7": "Home Devices",
       "t8": "The \"Home devices\" page is a control panel for LockedNet's end actuators. Specific commands for devices are available on it:",
       "t9": "boilDevice (iD=\"bD\"): Boil the water: (bD|Boil) — press the kettle button.",
@@ -122,6 +143,7 @@
       "t13": "Fresh air: (eH|Fresh) — turn on ventilation of the safe room;",
       "t14": "Humidify the air: (eH|Humidify) — turn on humidification of the safe room;",
       "t15": "Warm the room: (eH|Warm) — heating the safe room.",
+      
       "n8": "Hub Information",
       "t19": "The \"Hub info\" section displays system information about the Main Hub itself and available service commands (iD=\"hub\"):",
       "t20": "Buzz: (hub|Buzz) — give a sound signal;",
@@ -129,7 +151,60 @@
       "t22": "Check PC connection: (hub|Connection) — check the stability of communication with the PC via the COM port;",
       "t23": "Check the time: (hub|Time) — read the RTC hardware time;",
       "t24": "OLED ON: (hub|OLED) — force-enable the OLED display to show status.",
+      
       "n9": "System Log",
-      "t25": "LockedNet meticulously logs every action. The Python server on the PC automatically writes both the requested action itself and its result (feedback) into the log every time information passes through it.\nThe \"Log\" page allows viewing the entire contents of log.txt, located in the LOG folder in the project root. This is a critically important tool for debugging and system monitoring."
+      "t25": "LockedNet meticulously logs every action. The Python server on the PC automatically writes both the requested action itself and its result (feedback) into the log every time information passes through it.\nThe \"Log\" page allows viewing the entire contents of log.txt, located in the LOG folder in the project root. This is a critically important tool for debugging and system monitoring.",
+
+      "link": "Go to Main Hub Architecture"
+    },
+
+    "Netbrain": {
+      "title": "Network Brain: Main Hub (Hardware & Software)",
+      "t1": "This page serves as the technical datasheet for the LockedNet central node. Since the general principles of modular architecture, power supply, and radio communication philosophy have already been covered in detail in the \"Network Physics\" section, we will focus here on the unique integration of components that transforms a set of modules into an intelligent ecosystem control center.",
+
+      "n1": "Main Hub Architecture",
+      "t2": "At the heart of the Main Hub is the powerful ESP32 v1 microcontroller. It was chosen due to the high computing power required for packet routing and its rich set of hardware interfaces.",
+      "t3": "The VSPI hardware bus is used for high-speed communication. Due to the limited number of available MCU pins, two key modules—the NRF24L01+PA+LNA radio module and the MicroSD adapter—share common data lines (MOSI, MISO, SCLK). Device selection control is handled via dedicated Chip Select (CS) pins: pin D5 for the radio and D15 for the SD card. To stabilize logic levels during MCU deep sleep, the CS lines are equipped with 10 kΩ pull-up resistors, and operating priority on the bus is programmatically assigned to the radio module.",
+      "t4": "The two-wire I2C bus is used to connect analytical and information peripherals operating at a native voltage of 3.3V. Connected to the Hub's I2C bus are the RTC DS3231 (a real-time clock module with its own battery, required for maintaining accurate offline logging) and an 0.96” OLED (a display for outputting the current system state, battery charge, and connection statuses).",
+      "t5": "The Hub's power supply system is based on three parallel-connected 18650 batteries, yielding a total usable capacity of ~8100 mAh. The charging process is controlled by the TP4056 module, while a stable 3.3V for the logic is provided by the HT7333-A voltage regulator. To accurately determine the charge level, the Hub uses an analog voltage divider based on two 100 kΩ resistors. This allows the battery voltage to be safely read directly via the microcontroller's ADC (pin D35) without overloading the MCU input.",
+
+      "n2": "Dynamic Logging",
+      "t6": "A hybrid algorithm for system logging is implemented in the Hub:",
+      "t7": "When a connection to a PC exists, all network actions are logged exclusively to the Python server on the local PC.",
+      "t8": "In the absence of communication with the PC, the Hub automatically begins recording log files to its own MicroSD card.",
+      "t9": "Upon restoring communication with the PC, the Hub transfers all accumulated offline logs from the SD card to the general database on the computer, after which the MicroSD is cleared.",
+
+      "n3": "Dispatcher Algorithm and POST Packet Processing",
+      "t10": "The Hub operates under a strict cyclic background operation protocol (a 5-second cycle: 4.85s sleep / 0.15s active RX phase), described on the \"Network Physics\" page. This is critical for power saving; therefore, the device does not react to commands instantly but waits for its activity window.",
+      "t11": "Logic of handling the id|cmd|src packet:",
+      "t12": "The Hub receives a POST request packet.",
+      "t13": "The MCU unpacks the packet and verifies the module id; saves the src parameter (sending source) to know where to return feedback; and logs the request if necessary (including unpacking time and user login).",
+      "t14": "If the received id matches its own id=\"hub\", the Hub understands that the command is intended for it and executes it locally; otherwise, it retransmits it.",
+      "t15": "The ESP32 compiles a new packet solely containing id|cmd and, using the transmission logic (broadcasting the packet for 10 seconds), transmits it over the airwaves to the executive device.",
+      "t16": "Upon receiving a response from the executive device, the Hub unpacks it, logs it, identifies the return path via the saved src, packs the feedback, and sends it to the end user.",
+
+      "link": "Go to Mobile Repeater Architecture"
+    },
+
+    "Helpbeac": {
+      "title": "Help-Beacon: Mobile Repeater",
+      "t1": "This page presents the LockedNet MVP \"lifeline\" — a mobile relay designed to overcome critical system vulnerabilities. Whether the local PC is turned off, home Wi-Fi has gone down due to a blackout, or you are simply away from home (for example, at a local shop nearby), the Help-Beacon guarantees continuous communication with the Main Hub.",
+
+      "n1": "Philosophy and Scenarios: A Proxy Server in Your Pocket",
+      "t2": "Previous pages described system control scenarios utilizing home infrastructure. However, amidst war and energy terror, the probability of a total home network failure is critically high. It is precisely for such extreme conditions that the Help-Beacon is introduced into the system as a decentralized mobile relay. The Beacon acts as a mobile HTTP server and radio proxy. It replaces the PC Python server, allowing the user to interact with the Hub directly through a smartphone browser, wherever they are within radio range.",
+      "t3": "When the Help-Beacon is turned on, its microcontroller automatically brings up its own private Wi-Fi network — an Access Point (AP). A local HTTP server is launched on this network. Instead of bulky modern interfaces, a \"sufficiently minimalist\" web interface is deployed on the Beacon. Visually and logically, it mimics the structure of the home server, but its \"under-the-hood\" mechanics are optimized for operation on a resource-constrained microcontroller (including all fonts and styles being pre-embedded into the firmware).",
+
+      "n2": "Logical Operation Chain",
+      "t4": "1. Smartphone (HTTP GET) -> Beacon Wi-Fi AP -> Embedded Server (ESP32).",
+      "t5": "2. The Beacon generates a POST packet in a standardized id|cmd|src format. A critically important variable here is src=\"beacon\". Based on this specific parameter, the Main Hub will subsequently understand that the feedback from the executive device must be sent back over the air to the Beacon, rather than to the PC's COM port.",
+      "t6": "3. The Beacon sends the generated id|cmd|src packet to the Hub using the same standardized radio channels as the executive devices. The Help-Beacon itself, like the executive modules, is subject to a strict cyclic background operation protocol (4.85s sleep / 0.15s active RX mode). It wakes up for milliseconds to fire off a packet and go back to sleep to conserve energy.",
+      "t7": "4. Once the Hub has processed the data, it transmits feedback over the air addressed to the Beacon. During its next active phase, the Beacon catches this feedback, unpacks it, and displays the current status on the smartphone screen, reporting back to the user.",
+
+      "n3": "MVP Architectural Solutions",
+      "t8": "The hardware section of the Help-Beacon is built based on the ESP32-C3. This microcontroller is an ideal choice due to its built-in Wi-Fi and Bluetooth stacks required to create the access point, as well as its low power consumption. To communicate with the Main Hub, the Beacon is equipped with an SI24R1 radio module (which is compatible with NRF24L01+PA+LNA).",
+      "t9": "Communication between the MCU and the radio module is provided via a high-speed SPI bus. The CSN (Chip Select) line is equipped with a 10 kΩ pull-up resistor to stabilize the logic level. Power stability for the radio module is ensured by a 470 μF electrolytic capacitor.",
+      "t10": "The Beacon's power supply is built on a unified scheme: a Li-ion battery, a TP4056 (charging via USB-C), and an HT7333-A (3.3V) regulator for the logic. The Beacon utilizes a standardized voltage divider based on two 100 kΩ resistors, allowing it to safely read the battery voltage directly through the microcontroller's ADC without overloading the MCU input, and display the real-time charge of the autonomous Beacon in the web interface.",
+
+      "link": "Go to the catalog of actuating devices"
     }
 }

@@ -28,15 +28,43 @@ const LinkedInIcon = () => (
 export default function Header() {
   const { theme, setTheme } = useTheme();
   const { isOpen, toggleSidebar } = useSidebar();
-  const pathname = usePathname();
+  const pathname = usePathname(); // наприклад, '/1en/archnet1'
 
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
-  const isEnglish = pathname.startsWith('/1en');
-  const newPath = isEnglish 
-    ? pathname.replace('/1en', '/2uk') || '/2uk' 
-    : pathname.replace('/2uk', '/1en');
+  // РІШЕННЯ ДЛЯ ПЕРЕМИКАННЯ МОВ НА ВКЛАДЕНИХ СТОРІНКАХ
+  // 1. Розбиваємо шлях на сегменти: '/1en/archnet1' -> ['', '1en', 'archnet1']
+  const pathSegments = pathname ? pathname.split('/') : [];
+  
+  // 2. Локаль завжди знаходиться у другому сегменті (індекс 1)
+  const currentLocale = pathSegments[1]; // '1en' або '2uk'
+  const isEnglish = currentLocale === '1en';
+
+  // 3. Функція для створення нового шляху
+  const getTranslatedPath = () => {
+    if (pathSegments.length <= 1 || (currentLocale !== '1en' && currentLocale !== '2uk')) {
+      // Якщо шлях порожній, '/', або локаль не розпізнана -> ведемо на головну UA
+      return '/2uk';
+    }
+
+    // Копіюємо сегменти, щоб не псувати оригінал
+    const newSegments = [...pathSegments];
+
+    // Замінюємо тільки сегмент локалі
+    if (isEnglish) {
+      newSegments[1] = '2uk';
+    } else {
+      newSegments[1] = '1en';
+    }
+
+    // Збираємо назад: ['', '2uk', 'archnet1'] -> '/2uk/archnet1'
+    // Обробляємо випадок, коли результат split('') дає порожній рядок для головної
+    const finalPath = newSegments.join('/');
+    return finalPath === '' ? '/' + newSegments[1] : finalPath;
+  };
+
+  const newPath = getTranslatedPath();
 
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
@@ -56,11 +84,22 @@ export default function Header() {
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
-          <div className="text-2xl font-bold">
+          <div className="text-2xl font-bold flex items-center">
+          {/* РІШЕННЯ: Окремий заокруглений контейнер для назви (лого) */}
           <Link href={isEnglish ? "/1en" : "/2uk"} 
-            // ЗМІНЕНО: текст лого тепер primary (помаранчевий/зелений), ховер трохи світлішає
-            className="text-primary hover:opacity-80 transition-opacity">
-            LockedNet
+            // Прибрали ховер з Лінку, щоб не було лишніх тіней
+            className="group flex items-center transition-all duration-300">
+            {/* Контейнер: Заокруглений, локальний фон, тінь для відокремлення */}
+            <span className="flex items-center justify-center 
+                             /* Світла тема: майже білий фон, легка тінь, контраст для зеленого */
+                             bg-white/95 px-3 py-1 rounded-full border border-gray-100/50 
+                             filter drop-shadow-[0_1px_2px_rgba(0,0,0,0.1)] 
+                             /* Темна тема: Сірий фон, напівпрозорий, тінь прибираємо, контраст для помаранчевого */
+                             dark:bg-gray-900/60 dark:border-gray-800/80 dark:drop-shadow-none
+                             transition-colors duration-300">
+              {/* Назва LockedNet з primary кольором. Ховер трохи світлішає. */}
+              <span className="text-primary transition-opacity group-hover:opacity-85">LockedNet</span>
+            </span>
           </Link>
           </div>
         </div>
@@ -73,7 +112,7 @@ export default function Header() {
             rel="noopener noreferrer"
             aria-label="LinkedIn profile"
             // ЗМІНЕНО: hover:text-primary. Видалили dark: класи.
-            className="hover:text-primary transition-colors"
+            className="hover:text-primary transition-colors duration-300"
           >
             <LinkedInIcon />
           </a>
@@ -82,7 +121,7 @@ export default function Header() {
             onClick={toggleTheme}
             aria-label="Перемкнути темний режим"
             // ЗМІНЕНО: hover:text-primary
-            className="hover:text-primary transition-colors w-6 h-6 flex items-center justify-center"
+            className="hover:text-primary transition-colors duration-300 w-6 h-6 flex items-center justify-center"
           >
             {mounted ? (
               // Іконки автоматично візьмуть колір тексту завдяки currentColor у lucide
@@ -93,13 +132,12 @@ export default function Header() {
           </button>
 
           <Link
-            href={newPath}
-            // ЗМІНЕНО: hover:text-primary
-            className="hover:text-primary transition-colors w-6 h-6 flex items-center justify-center font-semibold"
-            aria-label="Switch language"
-          >
-            {isEnglish ? 'UA' : 'EN'}
-          </Link>
+      href={newPath} // Використовуємо надійно вирахований новий шлях
+      className="hover:text-primary transition-colors duration-300 w-6 h-6 flex items-center justify-center font-semibold"
+      aria-label="Switch language"
+    >
+      {isEnglish ? 'UA' : 'EN'}
+    </Link>
         </div>
       </nav>
     </header>

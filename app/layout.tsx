@@ -22,7 +22,8 @@ export default function RootLayout({
         <SidebarProvider>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <Header />
-            <main className="pt-20 pb-20 p-4 sm:p-8 md:p-12">
+            {/* Збільшуємо нижній відступ, щоб футер не перекривав контент */}
+            <main className="pt-20 pb-32 p-4 sm:p-8 md:p-12">
               {children}
             </main>
             <Footer />

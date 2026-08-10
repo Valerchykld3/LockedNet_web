@@ -1,5 +1,4 @@
 // tailwind.config.ts
-
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -15,13 +14,15 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
         primary: "var(--primary)",
-        // Можеш залишити border і тут про всяк випадок,
-        // але для @apply border-border краще borderColor нижче.
-        border: "var(--border)", // <--- Оце створює border-border як колір фону/тексту
+        border: "var(--border)",
       },
-      // === ДОДАЙ ОЦЕЙ БЛОК ДЛЯ МЕЖ ===
       borderColor: {
-        border: "var(--border)", // <--- Це створює кастомну утиліту для границь border-border
+        border: "var(--border)",
+      },
+      // === ДОДАЙ ОЦЕЙ БЛОК ДЛЯ ФОНОВИХ ЗОБРАЖЕНЬ ===
+      backgroundImage: {
+        // Це створить утиліту `bg-hero-pattern`, яка використовуватиме твою CSS-змінну
+        'hero-pattern': 'var(--hero-bg-url)', 
       },
     },
   },

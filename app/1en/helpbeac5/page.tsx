@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import messagesUk from '../../../messages/uk.json';
+import messagesUk from '../../../messages/en.json';
 
 const t = messagesUk.Helpbeac;
 
