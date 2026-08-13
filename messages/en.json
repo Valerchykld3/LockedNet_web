@@ -5,7 +5,7 @@
 
   "Futter": {
     "title": "LockedNet",
-    "t": "The LockedNet project is non-commercial and was created solely for my personal engineering portfolio. It serves to demonstrate the technical solutions and operational logic of the AntiBlackout ecosystem. Images created by AI."
+    "t": "The LockedNet project is non-commercial and was created solely for my personal engineering portfolio. It serves to demonstrate the technical solutions and operational logic of the AntiBlackout ecosystem. Conceptual images of finished devices were created with the help of AI."
   },
 
   "Sidebar": {
@@ -206,5 +206,14 @@
       "t10": "The Beacon's power supply is built on a unified scheme: a Li-ion battery, a TP4056 (charging via USB-C), and an HT7333-A (3.3V) regulator for the logic. The Beacon utilizes a standardized voltage divider based on two 100 kΩ resistors, allowing it to safely read the battery voltage directly through the microcontroller's ADC without overloading the MCU input, and display the real-time charge of the autonomous Beacon in the web interface.",
 
       "link": "Go to the catalog of actuating devices"
+    },
+
+    "Catalog": {
+      "title": "Peripherals: Actuator Devices (Catalog)",
+      "t1": "meteoDevice",
+      "t2": "UPSdevice",
+      "t3": "energyHub",
+
+      "link": "Go to the AntiBlackout Protocol action"
     }
 }
