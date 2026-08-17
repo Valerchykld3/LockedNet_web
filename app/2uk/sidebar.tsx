@@ -17,8 +17,8 @@ export default function Sidebar() {
     { href: '/2uk/bascon3', title: t.ch3 },
     { href: '/2uk/netbrain4', title: t.ch4 },
     { href: '/2uk/helpbeac5', title: t.ch5 },
-    { href: '/2uk/works', title: t.ch6 },
-    { href: '/2uk/works', title: t.ch7 },
+    { href: '/2uk/catalog6', title: t.ch6 },
+    { href: '/2uk/antibl7', title: t.ch7 },
   ];
 
   return (

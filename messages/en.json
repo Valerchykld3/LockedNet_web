@@ -214,6 +214,40 @@
       "t2": "UPSdevice",
       "t3": "energyHub",
 
+      "q1": "This page describes the operational logic of the meteoDevice, designed for monitoring air parameters within the \"survival room\".",
+      "n1": "​Hardware",
+      "q2": "​The device integrates a microcontroller, an SI24R1 radio module, an SCD40 CO2/temperature/humidity sensor, and an informational OLED display. The power supply system is standardized: an 18650 Li-ion battery, a TP4056 charging module (USB-C), and a 3.3V regulator. The circuit includes a physical toggle switch that completely cuts off voltage supply from the battery to the functional circuitry. This guarantees zero energy consumption when the device is not used for an extended period. To stabilize the operation of the SCD40 sensor and the radio module during peak current consumption, electrolytic capacitors with a capacity of 470 µF are installed in parallel to their power lines.",
+      "n2": "​Operation Algorithm",
+      "q3": "​Mode I: Local Measurement. This mode is activated by physically pressing a button on the device's housing. Upon activation, the screen turns on, displaying the \"LockedNet\" splash screen. Meanwhile, power is simultaneously supplied to the SCD40 sensor for its stabilization. After a few seconds, the current data is displayed on the screen: CO2 level (ppm), temperature (°C), and humidity (%). This data remains on the display for 15 seconds, after which the device returns to deep sleep mode.",
+      "q4": "Mode II: Network Measurement. In this mode, the device operates as a classic peripheral node of the ecosystem, subject to the strict cyclic background operation protocol described in the \"Network Physics\" section (4.85s deep sleep - 0.15s RX). If a packet addressed to id=\"mD\" with the command cmd=\"Measure\" is received, the SCD40 sensor stabilizes for a few seconds and reads the data. The OLED screen does not turn on during this process. The microcontroller forms a feedback packet with the data and sends it back to the Hub.",
+
+      "q01": "This device is a \"sentinel\" for 220V voltage. It operates via the cyclic background operation protocol described in the \"Network Physics\" section (4.85s deep sleep - 0.15s RX).",
+      "n01": "Hardware",
+      "q02": "The functional power section (ZMPT101B voltage transformer) is powered by a digital pin of the MCU. During \"non-blackout\" times, the 18650 Li-ion battery has constant access to recharging thanks to the HLK-PM01 converter, which steps down high 230V AC voltage to low 5V DC, while the TP4056, in turn, converts this into the optimal voltage for battery charging. In autonomous mode with 0V in the socket, the device is capable of operating for up to 60 days.",
+      "n02": "​Operation Algorithm",
+      "q03": "Upon receiving a packet addressed to id=\"Ud\" with the command cmd=\"Voltage\", the device takes a voltage measurement from the socket, then forms and sends feedback to the Hub.",
+
+      "q001": "A powerful, all-in-one device designed to create an autonomous microclimate within the \"survival room.\"",
+      "n001": "​Hardware and Operation Algorithm",
+      "q002": "The device is built on a robust power platform and is powered by an external 12V battery, utilizing internal converters to supply the logic circuits. Heating (PTC), piezo-humidification, and air ventilation systems are integrated into a single enclosure. Upon receiving a packet addressed to id=\"eH\" with the corresponding command cmd=\"Warm\" / cmd=\"Humidify\" / cmd=\"Fresh\", the device activates the required system. Beyond full climate control, the device manages an adaptive 12V lighting system featuring PWM brightness control and comes equipped with a universal power interface to provide power for mobile gadgets, laptops, or specialized low-voltage equipment like a portable electric stove.",
+
+      "linkCatalog": "Back to the catalog",
+
       "link": "Go to the AntiBlackout Protocol action"
+    },
+
+    "Antibl": {
+      "title": "AntiBlackout Protocol",
+      "t1": "This page presents the AntiBlackout Protocol (ABP) — LockedNet's central intelligent dispatcher designed for the automatic, continuous provision of critical microclimate maintenance and energy state monitoring within a depowered panic room. ABP initiates instantly upon grid power loss (220V) and functions completely autonomously, processing the situation in real time without user interaction.",
+      "n1": "Operation Logic",
+      "t2": "The ABP protocol is activated by the user via the web interface. This enables the «grid monitoring» state, which serves as the foundation for subsequent autonomous operation.",
+      "t3": "Stage I: Blackout Trigger. As soon as the user enables monitoring in the interface, the Hub commands the UPSdevice to enter a continuous grid voltage measurement mode. If the UPSdevice microcontroller's ADC detects severe voltage drops or 0V on the grid, the device instantly initiates the transmission of a special alarm signal. Upon receiving this alarm signal from the UPSdevice, the Main Hub immediately places the system into the active phase of the AntiBlackout Protocol.",
+      "t4": "Stage II: Blackout. Once a blackout is confirmed, the Hub becomes an autonomous command center, while peripheral devices execute delegated operational logic.",
+      "q1": "The Hub sends the meteoDevice a special alarm command (id=\"mD\" | cmd=\"alarm\"). Consequently, the meteoDevice independently enters a cyclic mode: it periodically wakes up, measures air parameters (temperature, humidity, CO2 level), and automatically transmits a feedback packet to the Hub. Measurement frequency and target parameters are user-configurable via the web interface.",
+      "q2": "The UPSdevice continues autonomous grid voltage measurement to detect grid power restoration.",
+      "q3": "Upon receiving feedback from the meteoDevice, the Hub performs a technical comparison of the received parameters against the target parameters set by the user in the interface. Based on this analysis, the Hub generates and transmits specific ON/OFF commands to the energyHub to restore the microclimate balance to the desired parameters.",
+      "t5": "Stage III: Blocking and Deactivation. During the active ABP phase, the Main Hub blocks any direct commands from the user destined for peripheral devices. Commands intended for the Hub itself (iD=\"hub\") remain accessible. Upon receiving confirmation from the UPSdevice regarding the restoration of stable 230V grid power, the Hub immediately deactivates the ABP protocol. Consequently, the meteoDevice and energyHub return to their standard operational modes. The UPSdevice continues to monitor the grid until the user disables the protocol entirely via the web interface.",
+
+      "link": "Back to LockedNet Philosophy"
     }
 }

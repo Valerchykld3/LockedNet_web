@@ -5,17 +5,89 @@ import messagesUk from '../../../messages/en.json';
 
 const t = messagesUk.Catalog;
 
+interface ProductCardProps {
+    id: string;
+    title: string;
+    imgSrc: string;
+    imgAlt: string;
+    href: string;
+}
+
+const ProductCard: React.FC<ProductCardProps> = ({ id, title, imgSrc, imgAlt, href }) => {
+    return (
+        <Link href={href} className="group block h-full">
+            <section 
+                id={id} 
+                className="bg-background/40 p-6 md:p-8 rounded-3xl border border-border h-full flex flex-col justify-between
+                           transition-all duration-300 ease-in-out shadow-md
+                           /* ЗМІНИ ТУТ: Додано hover:bg-primary/5 для акцентного виділення */
+                           hover:border-primary/50 hover:bg-primary/5 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20"
+            >
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-6 group-hover:text-primary transition-colors">
+                    {title}
+                </h2>
+                
+                <div className="relative h-60 md:h-72 w-full mt-auto">
+                    <Image 
+                        src={imgSrc} 
+                        alt={imgAlt} 
+                        fill 
+                        sizes="(max-w-768px) 100vw, 50vw"
+                        style={{ objectFit: 'contain' }} 
+                        className="p-2 transition-transform duration-500 ease-out group-hover:scale-105" 
+                    />
+                </div>
+            </section>
+        </Link>
+    );
+};
+
 export default function Page() { 
     return (
-        <div className="space-y-16 md:space-y-24">
-            <section id="main" className="text-center pt-8 pb-4 space-y-6 max-w-4xl mx-auto">
+        <div className="container mx-auto px-4 pb-16 space-y-12 md:space-y-16">
+            
+            <section id="main" className="text-center pt-12 pb-4 space-y-6 max-w-4xl mx-auto">
                 <h1 className="text-3xl md:text-5xl lg:text-7xl font-bold text-primary whitespace-pre-wrap leading-tight">
                     {t.title}
                 </h1>
             </section>
 
-            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 mt-12">
+                
+                <ProductCard 
+                    id="meteoDevice"
+                    title={t.t1}
+                    imgSrc="/7-images/meteoDevice.png"
+                    imgAlt="meteoDevice"
+                    href="/1en/catalog6/mD"
+                />
 
+                <ProductCard 
+                    id="UPSdevice"
+                    title={t.t2}
+                    imgSrc="/7-images/UPSdevice.png"
+                    imgAlt="UPSdevice"
+                    href="/1en/catalog6/Ud"
+                />
+
+                {/* ПАРА 2: РЯД 2 */}
+                <ProductCard 
+                    id="energyHub"
+                    title={t.t3}
+                    imgSrc="/7-images/energyHub.png"
+                    imgAlt="energyHub"
+                    href="/1en/catalog6/eH"
+                />
+
+                <section id="Coming soon" 
+                    className="bg-background/20 p-8 rounded-3xl border-2 border-dashed border-border/50 h-full flex items-center justify-center min-h-[300px]"
+                >
+                    <h2 className="text-3xl md:text-4xl font-bold text-muted-foreground text-center opacity-70">
+                        Coming soon
+                    </h2>
+                </section>
+            </div>
+            
 
             <section id="nextPage" className="py-20 sm:py-15 border-t border-border mt-6 container mx-auto">
                 <div className="text-center pt-3">
@@ -27,7 +99,6 @@ export default function Page() {
                     </Link>
                 </div>
             </section>
-
         </div>
     );
 }

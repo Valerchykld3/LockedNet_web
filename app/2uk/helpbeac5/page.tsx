@@ -94,7 +94,7 @@ export default function Page() {
             <section id="nextPage" className="py-20 sm:py-15 border-t border-border mt-6 container mx-auto">
                 <div className="text-center pt-3">
                     <Link 
-                        href="/2uk/works" 
+                        href="/2uk/catalog6" 
                         className="inline-block bg-primary text-background font-bold py-3 px-10 rounded-full hover:opacity-90 transition-all duration-300 transform hover:translate-x-1"
                     >
                         {t.link}
