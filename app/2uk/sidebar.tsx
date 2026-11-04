@@ -15,10 +15,10 @@ export default function Sidebar() {
     { href: '/2uk/archnet1', title: t.ch1 },
     { href: '/2uk/netph2', title: t.ch2 },
     { href: '/2uk/bascon3', title: t.ch3 },
-    { href: '/2uk/netbrain4', title: t.ch4 },
-    { href: '/2uk/helpbeac5', title: t.ch5 },
-    { href: '/2uk/catalog6', title: t.ch6 },
-    { href: '/2uk/antibl7', title: t.ch7 },
+    { href: '/2uk/locked', title: t.ch4 },
+    { href: '/2uk/locked', title: t.ch5 },
+    { href: '/2uk/locked', title: t.ch6 },
+    { href: '/2uk/locked', title: t.ch7 },
   ];
 
   return (

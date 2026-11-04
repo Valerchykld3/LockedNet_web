@@ -29,7 +29,7 @@
     "n2": "The \"Survival Room\" Strategy",
     "t4": "The primary rule of survival during winter blackouts is to avoid trying to heat the entire apartment. The most effective strategy is to isolate a single, smallest room, turning it into an autonomous \"capsule\". The operation of LockedNet's actuator modules is optimized specifically for this logic. Instead of wasting precious battery energy across the entire apartment, the system focuses its resources on maintaining a critical microclimate within this limited 3×3 m² space.",
     "t5": "This web resource was created with sole purpose of converting dozens of pages of disjointed technical notes and schematics into a comprehensible, structured presentation. It does not contain complex academic documentation, but rather the living operational logic of the ecosystem presented in lay terms. Furthermore, you can find a link to LinkedIn above, which documents the entire process of LockedNet's transformation from concept to a working ecosystem.",
-    "t6": "The navigation is non-linear and operates on a \"web\" principle: you can freely jump between any sections via the collapsible sidebar. However, for those who prefer to explore the LockedNet architecture with maximum comfort, we have included a \"roadmap\" in the same panel—a carefully designed sequence of pages for a smooth and step-by-step immersion into the project.",
+    "t6": "The navigation is non-linear and operates on a \"web\" principle: you can freely jump between any sections via the collapsible sidebar. However, for those who prefer to explore the LockedNet architecture with maximum comfort, it has been included a \"roadmap\" in the same panel—a carefully designed sequence of pages for a smooth and step-by-step immersion into the project.",
     "archLink": "Go to LockedNet Architecture"
   },
 
@@ -124,7 +124,7 @@
       "t42": "Physical Connection: HTTP protocol.",
       
       "n4": "Security",
-      "t5": "Since the application operates exclusively inside the local network, the security requirements are rationally minimized. Nevertheless, basic protection against unauthorized interference is implemented thanks to Flask. Access to the interface begins with an authorization page, where the server verifies a username and password stored in an encrypted format in a users.json file on the PC.",
+      "t5": "Since the application operates exclusively inside the local network, the security requirements are rationally minimized. Nevertheless, basic protection against unauthorized interference is implemented thanks to Flask.",
       
       "n5": "User Path: Interface Structure",
       "t6": "The application is broken down into several logical pages, each responsible for its own part of the functionality.",
